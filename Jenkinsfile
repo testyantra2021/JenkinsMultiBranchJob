@@ -6,7 +6,10 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
+                    // sh 'mvn clean compile'
+                    //bat 'mvn clean compile'
+                    def mvnHome =  tool name: 'maven-3', type: 'maven'   
+                    bat "${mvnHome}/bin/mvn clean compile"
                 }
             }
         }
@@ -15,7 +18,10 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
+                    // sh 'mvn test'
+                    // bat 'mvn test'
+                    def mvnHome =  tool name: 'maven-3', type: 'maven'   
+                    bat "${mvnHome}/bin/mvn test"
                 }
             }
         }
@@ -24,7 +30,10 @@ pipeline {
         stage ('Deployment Stage') {
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
+                    // sh 'mvn deploy'
+                    // bat 'mvn deploy'
+                    def mvnHome =  tool name: 'maven-3', type: 'maven'   
+                    bat "${mvnHome}/bin/mvn deploy"
                 }
             }
         }
